@@ -18,7 +18,8 @@
 
 ## 红队验证设计
 
-- [Golden Case 红队验证基准与 AutoResearch 交互设计](docs/golden-case-red-team-benchmark.md)
+- [V2：Golden Case 红队验证基准与 AutoResearch 交互设计](docs/golden-case-red-team-benchmark-v2.md)（当前推荐）
+- [V1：Golden Case 红队验证基准与 AutoResearch 交互设计](docs/golden-case-red-team-benchmark.md)（基础版本）
 
 设计采用三个检查点：
 
@@ -26,7 +27,7 @@
 - B：知识分类完备性，对应方向归类与大纲确认；
 - C：综合写作完备性，对应章节写作与引用检查。
 
-Golden Case 只供红队评估器读取。AutoResearch 首次输出应先冻结和计分，再接收诊断反馈并进入可选修复流程。
+Golden Case 只供红队评估器读取。AutoResearch 首次输出应先冻结和计分，再接收诊断反馈并进入可选修复流程。V2 进一步增加 Research Trace Graph 与版本化失败—修复分支，使首次产物、诊断依据和修复增益都可回放。
 
 ## 使用边界
 
