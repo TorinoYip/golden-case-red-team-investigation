@@ -14,66 +14,11 @@ Golden Case 被抽象为三类基准：
 
 ## 2. 总体交互图
 
-```mermaid
-flowchart TB
-    G["隐藏 Golden Case<br/>仅红队评估器可见"] --> M["离线构建 Golden Maps<br/>Coverage · Technology · Narrative"]
-
-    subgraph IA["A. 文献与证据覆盖：Step 3–4 后触发"]
-        direction LR
-        S34["Step 3 文献导入<br/>Step 4 文献卡片"] -->|"冻结<br/>SourceTable + SourceCard"| A["检查点 A"]
-        A -. "实时比对" .-> CV["Coverage Map<br/>核心文献召回<br/>知识单元覆盖<br/>证据密度<br/>卡片与元数据准确性<br/>边界与时间截点合规"]
-        CV -. "返回<br/>Missing / Weak Evidence / Card Error" .-> A
-    end
-
-    M -. "提供隐藏基准" .-> CV
-    A -->|"未通过：扩检或重制卡"| S34
-    A -->|"通过"| S56
-
-    subgraph IB["B. 知识分类完备性：Step 5–6 后触发"]
-        direction LR
-        S56["Step 5 方向归类<br/>Step 6 大纲确认"] -->|"冻结<br/>TopicCluster + Outline"| B["检查点 B"]
-        B -. "实时比对" .-> TV["Technology Map<br/>方法族与子路线覆盖<br/>技术层级完整度<br/>分类重叠率<br/>孤立证据率<br/>章节证据均衡度<br/>依赖与顺序一致性"]
-        TV -. "返回<br/>Missing Category / Overlap / Imbalance" .-> B
-    end
-
-    M -. "提供隐藏基准" .-> TV
-    B -->|"未通过：重聚类或重构大纲"| S56
-    B -->|"通过"| S78
-
-    subgraph IC["C. 综合写作完备性：Step 7–8 后触发"]
-        direction LR
-        S78["Step 7 章节写作<br/>Step 8 引用检查"] -->|"冻结<br/>Draft + Claim–Citation Map"| C["检查点 C"]
-        C -. "实时比对" .-> NV["Narrative Map<br/>叙事功能覆盖<br/>跨文献综合率<br/>比较维度覆盖<br/>Claim–Evidence 支撑率<br/>Research Gap 闭合度<br/>引用语义支持率"]
-        NV -. "返回<br/>Unsupported / Unsynthesized / Gap Break" .-> C
-    end
-
-    M -. "提供隐藏基准" .-> NV
-    C -->|"未通过：重写或修复证据绑定"| S78
-    C -->|"通过"| E["Step 9 导出"]
-
-    classDef stage fill:#F8FAFC,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A;
-    classDef gateA fill:#DBEAFE,stroke:#2563EB,stroke-width:2.5px,color:#1E3A8A;
-    classDef gateB fill:#FFEDD5,stroke:#EA580C,stroke-width:2.5px,color:#7C2D12;
-    classDef gateC fill:#F3E8FF,stroke:#9333EA,stroke-width:2.5px,color:#581C87;
-    classDef gold fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B;
-
-    class S34,S56,S78,E stage;
-    class A,CV gateA;
-    class B,TV gateB;
-    class C,NV gateC;
-    class G,M gold;
-
-    style IA fill:#F8FBFF,stroke:#BFDBFE,stroke-width:1px
-    style IB fill:#FFF9F5,stroke:#FED7AA,stroke-width:1px
-    style IC fill:#FCF8FF,stroke:#E9D5FF,stroke-width:1px
-```
-
 ### Draw.io 架构图
 
 ![Golden Case 红队验证与 AutoResearch 交互架构（Draw.io 版）](assets/golden-case-red-team-architecture.svg)
 
 [打开可编辑的 Draw.io 源文件](assets/golden-case-red-team-architecture.drawio)
-
 
 ### 三类 Golden Map 的元素、评分与 Step 交互
 
