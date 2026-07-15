@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1150" viewBox="0 0 1600 1150" role="img" aria-labelledby="title desc">
+  <title id="title">Golden Case Red-Team Validation for AutoResearch</title>
+  <desc id="desc">Draw.io architecture diagram showing Coverage, Technology and Narrative red-team checkpoints connected to AutoResearch steps.</desc>
+  <metadata>Editable source: golden-case-red-team-architecture.drawio</metadata>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+    <marker id="arrow-dark" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#334155"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#16a34a"/></marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#ea580c"/></marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#9333ea"/></marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#059669"/></marker>
+    <style>
+      text{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",Inter,Arial,sans-serif;fill:#0f172a}.title{font-size:28px;font-weight:700}.box-title{font-size:18px;font-weight:700}.body{font-size:15px}.small{font-size:13px}.lane-title{font-size:17px;font-weight:700}.edge-label{font-size:13px;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}.dash{stroke-dasharray:9 7}
+    </style>
+  </defs>
+  <rect width="1600" height="1150" fill="#ffffff"/>
+  <text x="800" y="44" text-anchor="middle" class="title">Golden Case Red-Team Validation for AutoResearch</text>
+
+  <rect x="520" y="70" width="560" height="72" rx="16" fill="#ecfdf5" stroke="#059669" stroke-width="3" filter="url(#shadow)"/>
+  <text x="800" y="99" text-anchor="middle" class="box-title" fill="#064e3b">隐藏 Golden Case</text><text x="800" y="124" text-anchor="middle" class="body" fill="#064e3b">仅红队评估器可见</text>
+  <line x1="800" y1="142" x2="800" y2="166" stroke="#059669" stroke-width="3" marker-end="url(#arrow-teal)"/>
+  <rect x="400" y="170" width="800" height="76" rx="16" fill="#f0fdf4" stroke="#34a853" stroke-width="2.5"/>
+  <text x="800" y="199" text-anchor="middle" class="box-title" fill="#14532d">离线构建 Golden Maps</text><text x="800" y="226" text-anchor="middle" class="body" fill="#14532d">Coverage  ·  Technology  ·  Narrative</text>
+
+  <rect x="50" y="290" width="1500" height="210" rx="18" fill="#f8fbff" stroke="#bfdbfe" stroke-width="2"/>
+  <text x="75" y="321" class="lane-title" fill="#1e3a8a">A  文献与证据覆盖  ·  Step 3–4 后触发</text>
+  <rect x="110" y="345" width="350" height="115" rx="14" fill="#fff" stroke="#94a3b8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="285" y="376" text-anchor="middle" class="box-title">Step 3  文献导入</text><text x="285" y="402" text-anchor="middle" class="box-title">Step 4  文献卡片</text><text x="285" y="439" text-anchor="middle" class="small" fill="#475569">SourceTable + SourceCard</text>
+  <rect x="570" y="355" width="190" height="95" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="3" filter="url(#shadow)"/>
+  <text x="665" y="391" text-anchor="middle" class="box-title" fill="#1e3a8a">检查点 A</text><text x="665" y="420" text-anchor="middle" class="body" fill="#1e3a8a">Coverage Gate</text>
+  <rect x="930" y="330" width="540" height="145" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="960" y="360" class="box-title" fill="#1e3a8a">Coverage Map</text><text x="960" y="390" class="body" fill="#1e3a8a">核心文献召回 · 知识单元覆盖</text><text x="960" y="417" class="body" fill="#1e3a8a">证据密度 · 卡片准确性</text><text x="960" y="444" class="body" fill="#1e3a8a">边界与时间截点合规</text>
+  <line x1="460" y1="389" x2="565" y2="389" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow-dark)"/><text x="512" y="379" text-anchor="middle" class="edge-label">冻结快照</text>
+  <line x1="760" y1="378" x2="925" y2="378" stroke="#2563eb" stroke-width="2.4" class="dash" marker-end="url(#arrow-blue)"/><text x="843" y="367" text-anchor="middle" class="edge-label" fill="#2563eb">实时比对</text>
+  <path d="M930 438 H765" fill="none" stroke="#2563eb" stroke-width="2.4" class="dash" marker-end="url(#arrow-blue)"/><text x="847" y="459" text-anchor="middle" class="small" fill="#2563eb">Missing / Weak Evidence / Card Error</text>
+  <path d="M665 450 V482 H285 V463" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/><text x="475" y="495" text-anchor="middle" class="small" fill="#2563eb">未通过：扩检 / 重制卡</text>
+
+  <rect x="50" y="530" width="1500" height="210" rx="18" fill="#fff9f5" stroke="#fed7aa" stroke-width="2"/>
+  <text x="75" y="561" class="lane-title" fill="#7c2d12">B  知识分类完备性  ·  Step 5–6 后触发</text>
+  <rect x="110" y="585" width="350" height="115" rx="14" fill="#fff" stroke="#94a3b8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="285" y="616" text-anchor="middle" class="box-title">Step 5  方向归类</text><text x="285" y="642" text-anchor="middle" class="box-title">Step 6  大纲确认</text><text x="285" y="679" text-anchor="middle" class="small" fill="#475569">TopicCluster + Outline</text>
+  <rect x="570" y="595" width="190" height="95" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="3" filter="url(#shadow)"/>
+  <text x="665" y="631" text-anchor="middle" class="box-title" fill="#7c2d12">检查点 B</text><text x="665" y="660" text-anchor="middle" class="body" fill="#7c2d12">Technology Gate</text>
+  <rect x="930" y="570" width="540" height="145" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="960" y="600" class="box-title" fill="#7c2d12">Technology Map</text><text x="960" y="630" class="body" fill="#7c2d12">方法族与子路线 · 技术层级</text><text x="960" y="657" class="body" fill="#7c2d12">分类重叠 · 孤立证据</text><text x="960" y="684" class="body" fill="#7c2d12">章节均衡 · 依赖与顺序</text>
+  <line x1="460" y1="629" x2="565" y2="629" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow-dark)"/><text x="512" y="619" text-anchor="middle" class="edge-label">冻结快照</text>
+  <line x1="760" y1="618" x2="925" y2="618" stroke="#ea580c" stroke-width="2.4" class="dash" marker-end="url(#arrow-orange)"/><text x="843" y="607" text-anchor="middle" class="edge-label" fill="#ea580c">实时比对</text>
+  <path d="M930 678 H765" fill="none" stroke="#ea580c" stroke-width="2.4" class="dash" marker-end="url(#arrow-orange)"/><text x="847" y="699" text-anchor="middle" class="small" fill="#ea580c">Missing Category / Overlap / Imbalance</text>
+  <path d="M665 690 V722 H285 V703" fill="none" stroke="#ea580c" stroke-width="2.2" marker-end="url(#arrow-orange)"/><text x="475" y="735" text-anchor="middle" class="small" fill="#ea580c">未通过：重聚类 / 重构大纲</text>
+
+  <rect x="50" y="770" width="1500" height="210" rx="18" fill="#fcf8ff" stroke="#e9d5ff" stroke-width="2"/>
+  <text x="75" y="801" class="lane-title" fill="#581c87">C  综合写作完备性  ·  Step 7–8 后触发</text>
+  <rect x="110" y="825" width="350" height="115" rx="14" fill="#fff" stroke="#94a3b8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="285" y="856" text-anchor="middle" class="box-title">Step 7  章节写作</text><text x="285" y="882" text-anchor="middle" class="box-title">Step 8  引用检查</text><text x="285" y="919" text-anchor="middle" class="small" fill="#475569">Draft + Claim–Citation Map</text>
+  <rect x="570" y="835" width="190" height="95" rx="16" fill="#f3e8ff" stroke="#9333ea" stroke-width="3" filter="url(#shadow)"/>
+  <text x="665" y="871" text-anchor="middle" class="box-title" fill="#581c87">检查点 C</text><text x="665" y="900" text-anchor="middle" class="body" fill="#581c87">Narrative Gate</text>
+  <rect x="930" y="810" width="540" height="145" rx="16" fill="#f3e8ff" stroke="#9333ea" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="960" y="840" class="box-title" fill="#581c87">Narrative Map</text><text x="960" y="870" class="body" fill="#581c87">叙事功能 · 跨文献综合</text><text x="960" y="897" class="body" fill="#581c87">比较维度 · Claim–Evidence 支撑</text><text x="960" y="924" class="body" fill="#581c87">Gap 闭合 · 引用语义支持</text>
+  <line x1="460" y1="869" x2="565" y2="869" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow-dark)"/><text x="512" y="859" text-anchor="middle" class="edge-label">冻结快照</text>
+  <line x1="760" y1="858" x2="925" y2="858" stroke="#9333ea" stroke-width="2.4" class="dash" marker-end="url(#arrow-purple)"/><text x="843" y="847" text-anchor="middle" class="edge-label" fill="#9333ea">实时比对</text>
+  <path d="M930 918 H765" fill="none" stroke="#9333ea" stroke-width="2.4" class="dash" marker-end="url(#arrow-purple)"/><text x="847" y="939" text-anchor="middle" class="small" fill="#9333ea">Unsupported / Unsynthesized / Gap Break</text>
+  <path d="M665 930 V962 H285 V943" fill="none" stroke="#9333ea" stroke-width="2.2" marker-end="url(#arrow-purple)"/><text x="475" y="975" text-anchor="middle" class="small" fill="#9333ea">未通过：重写 / 修复证据绑定</text>
+
+  <path d="M665 450 V520 H285 V580" fill="none" stroke="#16a34a" stroke-width="2.8" marker-end="url(#arrow-green)"/><text x="485" y="518" text-anchor="middle" class="edge-label" fill="#16a34a">通过</text>
+  <path d="M665 690 V760 H285 V820" fill="none" stroke="#16a34a" stroke-width="2.8" marker-end="url(#arrow-green)"/><text x="485" y="758" text-anchor="middle" class="edge-label" fill="#16a34a">通过</text>
+  <path d="M665 930 V1025" fill="none" stroke="#16a34a" stroke-width="2.8" marker-end="url(#arrow-green)"/><text x="687" y="1004" class="edge-label" fill="#16a34a">通过</text>
+  <rect x="535" y="1030" width="260" height="76" rx="16" fill="#f8fafc" stroke="#475569" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="665" y="1062" text-anchor="middle" class="box-title">Step 9  导出</text><text x="665" y="1088" text-anchor="middle" class="body" fill="#475569">DOCX / Markdown</text>
+
+  <path d="M1200 208 C1510 220 1510 280 1420 325" fill="none" stroke="#059669" stroke-width="2" opacity="0.7" class="dash" marker-end="url(#arrow-teal)"/>
+  <path d="M1200 208 C1560 260 1560 520 1420 565" fill="none" stroke="#059669" stroke-width="2" opacity="0.7" class="dash" marker-end="url(#arrow-teal)"/>
+  <path d="M1200 208 C1580 330 1580 760 1420 805" fill="none" stroke="#059669" stroke-width="2" opacity="0.7" class="dash" marker-end="url(#arrow-teal)"/>
+</svg>
