@@ -7,7 +7,7 @@
 Golden Case 被抽象为三类基准：
 
 1. **Gold Coverage Map**：研究问题、技术路线、子方法、比较维度、代表性证据、局限与未来方向。
-2. **Gold Taxonomy Map**：主题之间的层级、边界、交叉关系和合理叙事顺序。
+2. **Gold Technology Map（技术分类与谱系）**：技术路线、方法族、子方法、前置依赖、适用条件及其层级与交叉关系。
 3. **Gold Narrative Map**：从研究背景到分类综述、横向比较、局限归纳和研究展望的论证链，以及关键论断与证据之间的关系。
 
 > 为防止答案泄漏，每个检查点必须先冻结 AutoResearch 的首次输出并计算基线得分，再向生产端返回诊断。修复后的结果另行计分，不覆盖首次得分。
@@ -15,24 +15,62 @@ Golden Case 被抽象为三类基准：
 ## 2. 总体交互图
 
 ```mermaid
-flowchart TB
-    G["隐藏 Golden Case"] --> M["Gold Maps<br/>Coverage · Taxonomy · Narrative"]
+flowchart LR
+    subgraph P["AutoResearch 生产流程与红队检查点"]
+        direction TB
+        S34["Step 3 文献导入<br/>Step 4 文献卡片"] --> A["检查点 A<br/>文献与证据覆盖"]
+        A -->|"通过"| S56["Step 5 方向归类<br/>Step 6 大纲确认"]
+        A -->|"扩检 / 重新抽取"| S34
 
-    S34["Step 3 文献导入<br/>Step 4 文献卡片"] --> A["检查点 A<br/>文献与证据覆盖"]
-    M -. "仅评估器可见" .-> A
-    A -->|"通过"| S56["Step 5 方向归类<br/>Step 6 大纲确认"]
-    A -->|"诊断反馈并重跑"| S34
+        S56 --> B["检查点 B<br/>知识分类完备性"]
+        B -->|"通过"| S78["Step 7 章节写作<br/>Step 8 引用检查"]
+        B -->|"重聚类 / 重构大纲"| S56
 
-    M -. "仅评估器可见" .-> B["检查点 B<br/>知识分类完备性"]
-    S56 --> B
-    B -->|"通过"| S78["Step 7 章节写作<br/>Step 8 引用检查"]
-    B -->|"诊断反馈并重构"| S56
+        S78 --> C["检查点 C<br/>综合写作完备性"]
+        C -->|"通过"| E["Step 9 导出"]
+        C -->|"重写 / 修复引用"| S78
+    end
 
-    M -. "仅评估器可见" .-> C["检查点 C<br/>综合写作完备性"]
-    S78 --> C
-    C -->|"通过"| E["Step 9 导出"]
-    C -->|"诊断反馈并修订"| S78
+    subgraph R["Golden Maps：仅红队评估器可见"]
+        direction TB
+        G["隐藏 Golden Case"]
+
+        CV["Coverage Map 指标<br/>① 加权核心文献召回率<br/>② 关键知识单元覆盖率<br/>③ 主题证据密度<br/>④ 文献卡片与元数据准确率<br/>⑤ 边界与时间截点合规率"]
+
+        TV["Technology Map 指标<br/>① 方法族与子路线覆盖率<br/>② 技术层级完整度<br/>③ 分类重叠率<br/>④ 孤立证据率<br/>⑤ 章节证据均衡度<br/>⑥ 技术依赖与顺序一致性"]
+
+        NV["Narrative Map 指标<br/>① 叙事功能覆盖率<br/>② 跨文献综合率<br/>③ 比较维度覆盖率<br/>④ Claim–Evidence 支撑率<br/>⑤ Research Gap 推导闭合度<br/>⑥ 引用语义支持率"]
+
+        G --> CV
+        G --> TV
+        G --> NV
+    end
+
+    A -. "证据召回对照" .-> CV
+    B -. "技术分类对照" .-> TV
+    C -. "论证叙事对照" .-> NV
+
+    classDef stage fill:#F8FAFC,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A;
+    classDef gateA fill:#DBEAFE,stroke:#2563EB,stroke-width:2.5px,color:#1E3A8A;
+    classDef gateB fill:#FFEDD5,stroke:#EA580C,stroke-width:2.5px,color:#7C2D12;
+    classDef gateC fill:#F3E8FF,stroke:#9333EA,stroke-width:2.5px,color:#581C87;
+    classDef gold fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B;
+
+    class S34,S56,S78,E stage;
+    class A,CV gateA;
+    class B,TV gateB;
+    class C,NV gateC;
+    class G gold;
 ```
+
+### 三类 Golden Map 的指标口径
+
+| Golden Map | 核心对象 | 主要指标 | 主要服务的检查点 |
+|---|---|---|---|
+| Coverage Map | 文献、知识单元、证据片段和研究边界 | 核心文献召回、知识单元覆盖、证据密度、卡片准确性、时间与范围合规 | A；并为 B、C 提供底层证据基础 |
+| Technology Map | 技术路线、方法族、子方法、适用条件及依赖关系 | 方法族覆盖、技术层级完整度、分类重叠、孤立证据、章节均衡、依赖顺序一致性 | B |
+| Narrative Map | 背景—分类—比较—局限—Gap—展望的论证链 | 叙事功能覆盖、跨文献综合、比较维度、论断支撑、Gap 闭合、引用语义支持 | C |
+
 
 三个检查点均遵循同一协议：
 
@@ -46,7 +84,7 @@ flowchart TB
 | 检查点 | 对应环节 | 冻结的 AutoResearch 产物 | Golden Benchmark 输入 | 红队重点检查 | 返回生产端的诊断 | 回流位置 |
 |---|---|---|---|---|---|---|
 | A. 文献与证据覆盖 | Step 3 文献导入 + Step 4 文献卡片 | SourceTable、检索日志、去重结果、SourceCard、证据片段 | Gold Coverage Map 中的核心主题、加权代表文献和关键证据单元 | 核心文献召回、主题证据覆盖、卡片抽取准确性、元数据完整性 | 缺失主题 ID、证据稀薄方向、错误/重复卡片、需要扩检的关键词方向；不直接泄露 Golden 原文 | Step 3 扩检，或 Step 4 重新抽取 |
-| B. 知识分类完备性 | Step 5 方向归类 + Step 6 大纲确认 | TopicCluster、文献—主题映射、章节树、各节证据预算 | Gold Coverage Map + Gold Taxonomy Map | 重要方向遗漏、分类重叠、孤立文献、章节失衡、前后依赖和论证顺序 | 缺失类别、重叠类别对、无归属证据、证据不足章节、顺序冲突；允许不同于 Golden Case 的合理分类 | Step 5 重新聚类，或 Step 6 调整大纲 |
+| B. 知识分类完备性 | Step 5 方向归类 + Step 6 大纲确认 | TopicCluster、文献—主题映射、章节树、各节证据预算 | Gold Coverage Map + Gold Technology Map | 重要方向遗漏、分类重叠、孤立文献、章节失衡、前后依赖和论证顺序 | 缺失类别、重叠类别对、无归属证据、证据不足章节、顺序冲突；允许不同于 Golden Case 的合理分类 | Step 5 重新聚类，或 Step 6 调整大纲 |
 | C. 综合写作完备性 | Step 7 章节写作 + Step 8 引用检查 | 章节草稿、Claim–Citation Map、引用位置、SourceChunk、跨文献比较句 | Gold Narrative Map + 关键 Claim–Evidence 关系 | 是否从罗列走向综合、关键比较是否完整、结论是否有证据、引用是否支持对应论断、局限与展望能否由前文推出 | 缺失叙事功能、Unsupported Claim ID、引用错配、仅罗列未综合的段落、尚未闭合的 Research Gap | Step 7 重写综合段落，或 Step 8 修复证据绑定 |
 
 ## 4. 三个检查点的具体交互逻辑
