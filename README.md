@@ -29,12 +29,11 @@
 
 Golden Case 只供红队评估器读取。AutoResearch 首次输出应先冻结和计分，再接收诊断反馈并进入可选修复流程。V2 进一步增加 Research Trace Graph 与版本化失败—修复分支，使首次产物、诊断依据和修复增益都可回放。
 
-## 外部科研智能体参考
+## 外部参考资料
 
-- [参考资料索引：Agents-A1 与求是引擎](docs/research/README.md)
-- [求是引擎（Qiushi Engine）架构调研](docs/research/qiushi-engine.md) · [官方技术页](https://oxelra.com/product/)
+- [外部科研智能体调研资料库（非本项目）](docs/research/external-research-agents/README.md)
 
-该部分用于吸收长程科研 Agent、研究轨迹、证据核验与失败修复机制，不作为 Golden Case，也不直接参与红队评分。
+该资料库独立整理 Agents-A1、求是引擎等外部系统，仅用于吸收长程科研 Agent、研究轨迹、证据核验与失败修复机制。目录中的页面不是本项目 AutoResearch 的产品 README 或能力说明，也不作为 Golden Case、红队评分依据。
 
 ## 使用边界
 
