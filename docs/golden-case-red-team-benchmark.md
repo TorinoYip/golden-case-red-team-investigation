@@ -68,6 +68,13 @@ flowchart TB
     style IC fill:#FCF8FF,stroke:#E9D5FF,stroke-width:1px
 ```
 
+### Draw.io 架构图
+
+![Golden Case 红队验证与 AutoResearch 交互架构（Draw.io 版）](assets/golden-case-red-team-architecture.svg)
+
+[打开可编辑的 Draw.io 源文件](assets/golden-case-red-team-architecture.drawio)
+
+
 ### 三类 Golden Map 的元素、评分与 Step 交互
 
 #### Coverage Map：Step 4 主导
