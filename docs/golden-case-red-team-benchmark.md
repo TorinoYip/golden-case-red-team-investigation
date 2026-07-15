@@ -15,40 +15,41 @@ Golden Case 被抽象为三类基准：
 ## 2. 总体交互图
 
 ```mermaid
-flowchart LR
-    subgraph P["AutoResearch 生产流程与红队检查点"]
-        direction TB
-        S34["Step 3 文献导入<br/>Step 4 文献卡片"] --> A["检查点 A<br/>文献与证据覆盖"]
-        A -->|"通过"| S56["Step 5 方向归类<br/>Step 6 大纲确认"]
-        A -->|"扩检 / 重新抽取"| S34
+flowchart TB
+    G["隐藏 Golden Case<br/>仅红队评估器可见"] --> M["离线构建 Golden Maps<br/>Coverage · Technology · Narrative"]
 
-        S56 --> B["检查点 B<br/>知识分类完备性"]
-        B -->|"通过"| S78["Step 7 章节写作<br/>Step 8 引用检查"]
-        B -->|"重聚类 / 重构大纲"| S56
-
-        S78 --> C["检查点 C<br/>综合写作完备性"]
-        C -->|"通过"| E["Step 9 导出"]
-        C -->|"重写 / 修复引用"| S78
+    subgraph IA["A. 文献与证据覆盖：Step 3–4 后触发"]
+        direction LR
+        S34["Step 3 文献导入<br/>Step 4 文献卡片"] -->|"冻结<br/>SourceTable + SourceCard"| A["检查点 A"]
+        A -. "实时比对" .-> CV["Coverage Map<br/>核心文献召回<br/>知识单元覆盖<br/>证据密度<br/>卡片与元数据准确性<br/>边界与时间截点合规"]
+        CV -. "返回<br/>Missing / Weak Evidence / Card Error" .-> A
     end
 
-    subgraph R["Golden Maps：仅红队评估器可见"]
-        direction TB
-        G["隐藏 Golden Case"]
+    M -. "提供隐藏基准" .-> CV
+    A -->|"未通过：扩检或重制卡"| S34
+    A -->|"通过"| S56
 
-        CV["Coverage Map 指标<br/>① 加权核心文献召回率<br/>② 关键知识单元覆盖率<br/>③ 主题证据密度<br/>④ 文献卡片与元数据准确率<br/>⑤ 边界与时间截点合规率"]
-
-        TV["Technology Map 指标<br/>① 方法族与子路线覆盖率<br/>② 技术层级完整度<br/>③ 分类重叠率<br/>④ 孤立证据率<br/>⑤ 章节证据均衡度<br/>⑥ 技术依赖与顺序一致性"]
-
-        NV["Narrative Map 指标<br/>① 叙事功能覆盖率<br/>② 跨文献综合率<br/>③ 比较维度覆盖率<br/>④ Claim–Evidence 支撑率<br/>⑤ Research Gap 推导闭合度<br/>⑥ 引用语义支持率"]
-
-        G --> CV
-        G --> TV
-        G --> NV
+    subgraph IB["B. 知识分类完备性：Step 5–6 后触发"]
+        direction LR
+        S56["Step 5 方向归类<br/>Step 6 大纲确认"] -->|"冻结<br/>TopicCluster + Outline"| B["检查点 B"]
+        B -. "实时比对" .-> TV["Technology Map<br/>方法族与子路线覆盖<br/>技术层级完整度<br/>分类重叠率<br/>孤立证据率<br/>章节证据均衡度<br/>依赖与顺序一致性"]
+        TV -. "返回<br/>Missing Category / Overlap / Imbalance" .-> B
     end
 
-    A -. "证据召回对照" .-> CV
-    B -. "技术分类对照" .-> TV
-    C -. "论证叙事对照" .-> NV
+    M -. "提供隐藏基准" .-> TV
+    B -->|"未通过：重聚类或重构大纲"| S56
+    B -->|"通过"| S78
+
+    subgraph IC["C. 综合写作完备性：Step 7–8 后触发"]
+        direction LR
+        S78["Step 7 章节写作<br/>Step 8 引用检查"] -->|"冻结<br/>Draft + Claim–Citation Map"| C["检查点 C"]
+        C -. "实时比对" .-> NV["Narrative Map<br/>叙事功能覆盖<br/>跨文献综合率<br/>比较维度覆盖<br/>Claim–Evidence 支撑率<br/>Research Gap 闭合度<br/>引用语义支持率"]
+        NV -. "返回<br/>Unsupported / Unsynthesized / Gap Break" .-> C
+    end
+
+    M -. "提供隐藏基准" .-> NV
+    C -->|"未通过：重写或修复证据绑定"| S78
+    C -->|"通过"| E["Step 9 导出"]
 
     classDef stage fill:#F8FAFC,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A;
     classDef gateA fill:#DBEAFE,stroke:#2563EB,stroke-width:2.5px,color:#1E3A8A;
@@ -60,7 +61,11 @@ flowchart LR
     class A,CV gateA;
     class B,TV gateB;
     class C,NV gateC;
-    class G gold;
+    class G,M gold;
+
+    style IA fill:#F8FBFF,stroke:#BFDBFE,stroke-width:1px
+    style IB fill:#FFF9F5,stroke:#FED7AA,stroke-width:1px
+    style IC fill:#FCF8FF,stroke:#E9D5FF,stroke-width:1px
 ```
 
 ### 三类 Golden Map 的指标口径
