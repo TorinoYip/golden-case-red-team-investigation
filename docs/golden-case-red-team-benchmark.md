@@ -18,6 +18,14 @@
 
 [打开可编辑的 Draw.io 源文件](assets/golden-case-red-team-architecture.drawio)
 
+### 数据库交互简图
+
+![红队运行层与 AutoResearch 数据库交互关系](assets/red-team-database-interaction.svg)
+
+[打开可编辑的数据库交互 Draw.io 源文件](assets/red-team-database-interaction.drawio)
+
+该图只展示红队直接读取或写入的现有业务表、运行角色与四张红队持久化表；未引入新变量或新关系的部分统一以“…”省略。它是数据库视角，与上一幅运行时主交互图互补。
+
 图中的比对是**阶段完成后的事件触发式检查**，不是在 Agent 生成过程中逐 token 干预。生产端只接收问题类型、位置、原因、负责步骤和修复目标，不接收 Golden Case 原文、具体标准章节或缺失方法名称。
 
 ## 3. 论文特定的三张 Golden Map
